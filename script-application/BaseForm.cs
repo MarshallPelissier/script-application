@@ -205,7 +205,7 @@ namespace script_application
 
         private void tsm_Line_Click(object sender, EventArgs e)
         {
-            var myForm = new Styles();
+            var myForm = new Styles(this);
             myForm.Show();
         }
     }

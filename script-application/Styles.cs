@@ -27,7 +27,6 @@ namespace script_application
 
         private void Styles_Load(object sender, EventArgs e)
         {
-            Baseform = new BaseForm();
             Populate_Combo_Type();
             Populate_Combo_Char();
         }

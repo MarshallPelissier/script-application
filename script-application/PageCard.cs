@@ -114,5 +114,11 @@ namespace script_application
             Contents.Move_Card(false);
         }
 
+        private void txt_Card_Desc_TextChanged(object sender, EventArgs e)
+        {
+            Set_Summary(txt_Card_Desc.Text);
+            Contents.Summary_Changed();
+        }
+        
     }
 }

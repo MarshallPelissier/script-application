@@ -65,6 +65,7 @@
             this.txt_Card_Desc.Name = "txt_Card_Desc";
             this.txt_Card_Desc.Size = new System.Drawing.Size(168, 78);
             this.txt_Card_Desc.TabIndex = 1;
+            this.txt_Card_Desc.TextChanged += new System.EventHandler(this.txt_Card_Desc_TextChanged);
             // 
             // panel1
             // 
