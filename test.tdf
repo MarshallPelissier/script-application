@@ -4,39 +4,61 @@
   "Pages": [
     {
       "$id": "2",
-      "Lines": null,
+      "Lines": [],
       "Images": null,
       "PageNum": 1,
       "Description": null
     },
     {
       "$id": "3",
-      "Lines": null,
+      "Lines": [],
       "Images": null,
       "PageNum": 2,
       "Description": null
     },
     {
       "$id": "4",
-      "Lines": null,
+      "Lines": [],
       "Images": null,
       "PageNum": 3,
       "Description": null
     },
     {
       "$id": "5",
-      "Lines": null,
+      "Lines": [],
       "Images": null,
       "PageNum": 4,
       "Description": null
     }
   ],
-  "Types": [],
-  "Characters": [],
+  "Types": [
+    {
+      "$id": "6",
+      "TypeName": "Character",
+      "PreLine": " ",
+      "PostLine": " ",
+      "Character": true,
+      "PostCharacter": " : "
+    },
+    {
+      "$id": "7",
+      "TypeName": "Default",
+      "PreLine": " ",
+      "PostLine": " ",
+      "Character": false,
+      "PostCharacter": ""
+    }
+  ],
+  "Characters": [
+    "Auron",
+    "Gehn",
+    "Lin",
+    "Eon"
+  ],
   "Summaries": [
     "a",
-    "abcd",
     "ab",
-    "abc"
+    "abc",
+    "abcd"
   ]
 }

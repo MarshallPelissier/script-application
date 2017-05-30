@@ -123,6 +123,7 @@ namespace script_application
 
         private void btn_Type_Save_Click(object sender, EventArgs e)
         {
+            Baseform.data_changed();
             if (cbo_Type.SelectedItem.ToString() == "New")
             {
                 Types newType = new Types();
@@ -252,6 +253,7 @@ namespace script_application
 
         private void btn_Char_Save_Click(object sender, EventArgs e)
         {
+            Baseform.data_changed();
             if (cbo_Char.SelectedItem.ToString() == "New")
             {
                 string character = txt_Char_Name.Text;

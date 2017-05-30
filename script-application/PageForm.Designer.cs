@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlp_base = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_Left = new System.Windows.Forms.Panel();
-            this.lsv_Script = new System.Windows.Forms.ListView();
+            this.pnl_Script = new System.Windows.Forms.Panel();
+            this.pnl_Preview = new System.Windows.Forms.Panel();
+            this.lbl_Preview = new System.Windows.Forms.Label();
             this.pnl_Line = new System.Windows.Forms.Panel();
             this.txt_Line = new System.Windows.Forms.TextBox();
             this.pnl_Line_Info = new System.Windows.Forms.Panel();
@@ -66,8 +69,13 @@
             this.cbo_Page_Number = new System.Windows.Forms.ComboBox();
             this.btn_Page_Right = new System.Windows.Forms.Button();
             this.btn_Page_Left = new System.Windows.Forms.Button();
+            this.dgv_Script = new System.Windows.Forms.DataGridView();
+            this.lines = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlp_base.SuspendLayout();
             this.pnl_Left.SuspendLayout();
+            this.pnl_Script.SuspendLayout();
+            this.pnl_Preview.SuspendLayout();
             this.pnl_Line.SuspendLayout();
             this.pnl_Line_Info.SuspendLayout();
             this.pnl_Script_Control.SuspendLayout();
@@ -82,6 +90,7 @@
             this.pnl_Page_Control.SuspendLayout();
             this.tbl_Page_Number.SuspendLayout();
             this.pnl_Overview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).BeginInit();
             this.SuspendLayout();
             // 
             // tlp_base
@@ -99,13 +108,14 @@
             this.tlp_base.Name = "tlp_base";
             this.tlp_base.RowCount = 1;
             this.tlp_base.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlp_base.Size = new System.Drawing.Size(884, 561);
+            this.tlp_base.Size = new System.Drawing.Size(944, 584);
             this.tlp_base.TabIndex = 0;
             // 
             // pnl_Left
             // 
             this.pnl_Left.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.pnl_Left.Controls.Add(this.lsv_Script);
+            this.pnl_Left.Controls.Add(this.pnl_Script);
+            this.pnl_Left.Controls.Add(this.pnl_Preview);
             this.pnl_Left.Controls.Add(this.pnl_Line);
             this.pnl_Left.Controls.Add(this.pnl_Script_Control);
             this.pnl_Left.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -113,17 +123,44 @@
             this.pnl_Left.Margin = new System.Windows.Forms.Padding(15, 0, 8, 15);
             this.pnl_Left.Name = "pnl_Left";
             this.pnl_Left.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_Left.Size = new System.Drawing.Size(507, 546);
+            this.pnl_Left.Size = new System.Drawing.Size(543, 569);
             this.pnl_Left.TabIndex = 0;
             // 
-            // lsv_Script
+            // pnl_Script
             // 
-            this.lsv_Script.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsv_Script.Location = new System.Drawing.Point(10, 10);
-            this.lsv_Script.Name = "lsv_Script";
-            this.lsv_Script.Size = new System.Drawing.Size(487, 371);
-            this.lsv_Script.TabIndex = 0;
-            this.lsv_Script.UseCompatibleStateImageBehavior = false;
+            this.pnl_Script.AutoScroll = true;
+            this.pnl_Script.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_Script.Controls.Add(this.dgv_Script);
+            this.pnl_Script.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Script.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnl_Script.Location = new System.Drawing.Point(10, 10);
+            this.pnl_Script.Name = "pnl_Script";
+            this.pnl_Script.Padding = new System.Windows.Forms.Padding(10);
+            this.pnl_Script.Size = new System.Drawing.Size(523, 334);
+            this.pnl_Script.TabIndex = 4;
+            // 
+            // pnl_Preview
+            // 
+            this.pnl_Preview.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_Preview.Controls.Add(this.lbl_Preview);
+            this.pnl_Preview.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_Preview.Location = new System.Drawing.Point(10, 344);
+            this.pnl_Preview.Name = "pnl_Preview";
+            this.pnl_Preview.Padding = new System.Windows.Forms.Padding(10);
+            this.pnl_Preview.Size = new System.Drawing.Size(523, 60);
+            this.pnl_Preview.TabIndex = 2;
+            this.pnl_Preview.Visible = false;
+            // 
+            // lbl_Preview
+            // 
+            this.lbl_Preview.BackColor = System.Drawing.SystemColors.Window;
+            this.lbl_Preview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_Preview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_Preview.Location = new System.Drawing.Point(10, 10);
+            this.lbl_Preview.Name = "lbl_Preview";
+            this.lbl_Preview.Size = new System.Drawing.Size(503, 40);
+            this.lbl_Preview.TabIndex = 0;
+            this.lbl_Preview.Text = "Preview Text";
             // 
             // pnl_Line
             // 
@@ -131,12 +168,11 @@
             this.pnl_Line.Controls.Add(this.txt_Line);
             this.pnl_Line.Controls.Add(this.pnl_Line_Info);
             this.pnl_Line.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Line.Location = new System.Drawing.Point(10, 381);
+            this.pnl_Line.Location = new System.Drawing.Point(10, 404);
             this.pnl_Line.Name = "pnl_Line";
             this.pnl_Line.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_Line.Size = new System.Drawing.Size(487, 100);
-            this.pnl_Line.TabIndex = 2;
-            this.pnl_Line.Visible = false;
+            this.pnl_Line.Size = new System.Drawing.Size(523, 100);
+            this.pnl_Line.TabIndex = 3;
             // 
             // txt_Line
             // 
@@ -144,8 +180,9 @@
             this.txt_Line.Location = new System.Drawing.Point(10, 10);
             this.txt_Line.Multiline = true;
             this.txt_Line.Name = "txt_Line";
-            this.txt_Line.Size = new System.Drawing.Size(318, 80);
+            this.txt_Line.Size = new System.Drawing.Size(354, 80);
             this.txt_Line.TabIndex = 0;
+            this.txt_Line.TextChanged += new System.EventHandler(this.txt_Line_TextChanged);
             // 
             // pnl_Line_Info
             // 
@@ -154,7 +191,7 @@
             this.pnl_Line_Info.Controls.Add(this.cbo_Type);
             this.pnl_Line_Info.Controls.Add(this.btn_Save_Line);
             this.pnl_Line_Info.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_Line_Info.Location = new System.Drawing.Point(328, 10);
+            this.pnl_Line_Info.Location = new System.Drawing.Point(364, 10);
             this.pnl_Line_Info.Name = "pnl_Line_Info";
             this.pnl_Line_Info.Size = new System.Drawing.Size(149, 80);
             this.pnl_Line_Info.TabIndex = 5;
@@ -164,15 +201,13 @@
             this.cbo_Character.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_Character.FormattingEnabled = true;
             this.cbo_Character.Items.AddRange(new object[] {
-            "Gehn",
-            "Lin",
-            "Auran",
-            "Eon"});
+            "Characters"});
             this.cbo_Character.Location = new System.Drawing.Point(27, 28);
             this.cbo_Character.Name = "cbo_Character";
             this.cbo_Character.Size = new System.Drawing.Size(121, 21);
             this.cbo_Character.TabIndex = 2;
             this.cbo_Character.Text = "Character";
+            this.cbo_Character.SelectedIndexChanged += new System.EventHandler(this.cbo_Character_SelectedIndexChanged);
             // 
             // btn_Cancel_Line
             // 
@@ -194,6 +229,7 @@
             this.cbo_Type.Size = new System.Drawing.Size(121, 21);
             this.cbo_Type.TabIndex = 1;
             this.cbo_Type.Text = "Type";
+            this.cbo_Type.SelectedIndexChanged += new System.EventHandler(this.cbo_Type_SelectedIndexChanged);
             // 
             // btn_Save_Line
             // 
@@ -204,6 +240,7 @@
             this.btn_Save_Line.TabIndex = 3;
             this.btn_Save_Line.Text = "Save";
             this.btn_Save_Line.UseVisualStyleBackColor = true;
+            this.btn_Save_Line.Click += new System.EventHandler(this.btn_Save_Line_Click_1);
             // 
             // pnl_Script_Control
             // 
@@ -214,10 +251,10 @@
             this.pnl_Script_Control.Controls.Add(this.btn_Remove_Line);
             this.pnl_Script_Control.Controls.Add(this.btn_Add_Line);
             this.pnl_Script_Control.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Script_Control.Location = new System.Drawing.Point(10, 481);
+            this.pnl_Script_Control.Location = new System.Drawing.Point(10, 504);
             this.pnl_Script_Control.Name = "pnl_Script_Control";
             this.pnl_Script_Control.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_Script_Control.Size = new System.Drawing.Size(487, 55);
+            this.pnl_Script_Control.Size = new System.Drawing.Size(523, 55);
             this.pnl_Script_Control.TabIndex = 1;
             // 
             // btn_Edit_Styles
@@ -229,6 +266,7 @@
             this.btn_Edit_Styles.TabIndex = 4;
             this.btn_Edit_Styles.Text = "Edit Styles";
             this.btn_Edit_Styles.UseVisualStyleBackColor = true;
+            this.btn_Edit_Styles.Click += new System.EventHandler(this.btn_Edit_Styles_Click);
             // 
             // btn_Move_Up
             // 
@@ -236,7 +274,7 @@
             this.btn_Move_Up.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_Move_Up.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_Move_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Move_Up.Location = new System.Drawing.Point(395, 10);
+            this.btn_Move_Up.Location = new System.Drawing.Point(431, 10);
             this.btn_Move_Up.Name = "btn_Move_Up";
             this.btn_Move_Up.Size = new System.Drawing.Size(41, 35);
             this.btn_Move_Up.TabIndex = 3;
@@ -248,7 +286,7 @@
             this.btn_Move_Down.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_Move_Down.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_Move_Down.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Move_Down.Location = new System.Drawing.Point(436, 10);
+            this.btn_Move_Down.Location = new System.Drawing.Point(472, 10);
             this.btn_Move_Down.Name = "btn_Move_Down";
             this.btn_Move_Down.Size = new System.Drawing.Size(41, 35);
             this.btn_Move_Down.TabIndex = 2;
@@ -283,11 +321,11 @@
             this.pnl_Right.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.pnl_Right.Controls.Add(this.tlp_Script_Info);
             this.pnl_Right.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Right.Location = new System.Drawing.Point(537, 0);
+            this.pnl_Right.Location = new System.Drawing.Point(573, 0);
             this.pnl_Right.Margin = new System.Windows.Forms.Padding(7, 0, 15, 15);
             this.pnl_Right.Name = "pnl_Right";
             this.pnl_Right.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_Right.Size = new System.Drawing.Size(332, 546);
+            this.pnl_Right.Size = new System.Drawing.Size(356, 569);
             this.pnl_Right.TabIndex = 2;
             // 
             // tlp_Script_Info
@@ -305,7 +343,7 @@
             this.tlp_Script_Info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tlp_Script_Info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlp_Script_Info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tlp_Script_Info.Size = new System.Drawing.Size(312, 526);
+            this.tlp_Script_Info.Size = new System.Drawing.Size(336, 549);
             this.tlp_Script_Info.TabIndex = 0;
             // 
             // pnl_Images
@@ -313,11 +351,11 @@
             this.pnl_Images.BackColor = System.Drawing.SystemColors.Control;
             this.pnl_Images.Controls.Add(this.tbl_Images);
             this.pnl_Images.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Images.Location = new System.Drawing.Point(0, 251);
+            this.pnl_Images.Location = new System.Drawing.Point(0, 260);
             this.pnl_Images.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.pnl_Images.Name = "pnl_Images";
             this.pnl_Images.Padding = new System.Windows.Forms.Padding(3);
-            this.pnl_Images.Size = new System.Drawing.Size(312, 275);
+            this.pnl_Images.Size = new System.Drawing.Size(336, 289);
             this.pnl_Images.TabIndex = 2;
             // 
             // tbl_Images
@@ -332,7 +370,7 @@
             this.tbl_Images.RowCount = 2;
             this.tbl_Images.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tbl_Images.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tbl_Images.Size = new System.Drawing.Size(306, 269);
+            this.tbl_Images.Size = new System.Drawing.Size(330, 283);
             this.tbl_Images.TabIndex = 0;
             // 
             // tbl_Image_Control
@@ -345,19 +383,19 @@
             this.tbl_Image_Control.Controls.Add(this.pnl_Image_Control, 1, 0);
             this.tbl_Image_Control.Controls.Add(this.btn_Image_Left, 0, 0);
             this.tbl_Image_Control.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbl_Image_Control.Location = new System.Drawing.Point(0, 229);
+            this.tbl_Image_Control.Location = new System.Drawing.Point(0, 243);
             this.tbl_Image_Control.Margin = new System.Windows.Forms.Padding(0);
             this.tbl_Image_Control.Name = "tbl_Image_Control";
             this.tbl_Image_Control.RowCount = 1;
             this.tbl_Image_Control.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbl_Image_Control.Size = new System.Drawing.Size(306, 40);
+            this.tbl_Image_Control.Size = new System.Drawing.Size(330, 40);
             this.tbl_Image_Control.TabIndex = 0;
             // 
             // btn_Image_Right
             // 
             this.btn_Image_Right.BackgroundImage = global::script_application.Properties.Resources.right;
             this.btn_Image_Right.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Image_Right.Location = new System.Drawing.Point(279, 3);
+            this.btn_Image_Right.Location = new System.Drawing.Point(303, 3);
             this.btn_Image_Right.Name = "btn_Image_Right";
             this.btn_Image_Right.Size = new System.Drawing.Size(24, 34);
             this.btn_Image_Right.TabIndex = 2;
@@ -371,7 +409,7 @@
             this.pnl_Image_Control.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Image_Control.Location = new System.Drawing.Point(33, 3);
             this.pnl_Image_Control.Name = "pnl_Image_Control";
-            this.pnl_Image_Control.Size = new System.Drawing.Size(240, 34);
+            this.pnl_Image_Control.Size = new System.Drawing.Size(264, 34);
             this.pnl_Image_Control.TabIndex = 1;
             // 
             // txt_Caption
@@ -380,7 +418,7 @@
             this.txt_Caption.Location = new System.Drawing.Point(75, 0);
             this.txt_Caption.Multiline = true;
             this.txt_Caption.Name = "txt_Caption";
-            this.txt_Caption.Size = new System.Drawing.Size(90, 34);
+            this.txt_Caption.Size = new System.Drawing.Size(114, 34);
             this.txt_Caption.TabIndex = 2;
             this.txt_Caption.Text = "Caption";
             this.txt_Caption.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -388,7 +426,7 @@
             // btn_Remove_Image
             // 
             this.btn_Remove_Image.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_Remove_Image.Location = new System.Drawing.Point(165, 0);
+            this.btn_Remove_Image.Location = new System.Drawing.Point(189, 0);
             this.btn_Remove_Image.Name = "btn_Remove_Image";
             this.btn_Remove_Image.Size = new System.Drawing.Size(75, 34);
             this.btn_Remove_Image.TabIndex = 1;
@@ -421,7 +459,7 @@
             this.pic_Image.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pic_Image.Location = new System.Drawing.Point(3, 3);
             this.pic_Image.Name = "pic_Image";
-            this.pic_Image.Size = new System.Drawing.Size(300, 223);
+            this.pic_Image.Size = new System.Drawing.Size(324, 237);
             this.pic_Image.TabIndex = 3;
             this.pic_Image.TabStop = false;
             // 
@@ -435,7 +473,7 @@
             this.pnl_Description.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.pnl_Description.Name = "pnl_Description";
             this.pnl_Description.Padding = new System.Windows.Forms.Padding(5, 35, 5, 5);
-            this.pnl_Description.Size = new System.Drawing.Size(312, 176);
+            this.pnl_Description.Size = new System.Drawing.Size(336, 185);
             this.pnl_Description.TabIndex = 1;
             // 
             // txt_Description
@@ -444,7 +482,7 @@
             this.txt_Description.Location = new System.Drawing.Point(5, 35);
             this.txt_Description.Multiline = true;
             this.txt_Description.Name = "txt_Description";
-            this.txt_Description.Size = new System.Drawing.Size(302, 136);
+            this.txt_Description.Size = new System.Drawing.Size(326, 145);
             this.txt_Description.TabIndex = 1;
             // 
             // lbl_Description
@@ -469,7 +507,7 @@
             this.pnl_Page_Control.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnl_Page_Control.Name = "pnl_Page_Control";
             this.pnl_Page_Control.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_Page_Control.Size = new System.Drawing.Size(312, 55);
+            this.pnl_Page_Control.Size = new System.Drawing.Size(336, 55);
             this.pnl_Page_Control.TabIndex = 0;
             // 
             // tbl_Page_Number
@@ -484,7 +522,7 @@
             this.tbl_Page_Number.Name = "tbl_Page_Number";
             this.tbl_Page_Number.RowCount = 1;
             this.tbl_Page_Number.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbl_Page_Number.Size = new System.Drawing.Size(232, 35);
+            this.tbl_Page_Number.Size = new System.Drawing.Size(256, 35);
             this.tbl_Page_Number.TabIndex = 3;
             // 
             // pnl_Overview
@@ -493,7 +531,7 @@
             this.pnl_Overview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Overview.Location = new System.Drawing.Point(3, 3);
             this.pnl_Overview.Name = "pnl_Overview";
-            this.pnl_Overview.Size = new System.Drawing.Size(110, 29);
+            this.pnl_Overview.Size = new System.Drawing.Size(122, 29);
             this.pnl_Overview.TabIndex = 1;
             // 
             // btn_Overview
@@ -502,7 +540,7 @@
             this.btn_Overview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Overview.Location = new System.Drawing.Point(0, 0);
             this.btn_Overview.Name = "btn_Overview";
-            this.btn_Overview.Size = new System.Drawing.Size(110, 29);
+            this.btn_Overview.Size = new System.Drawing.Size(122, 29);
             this.btn_Overview.TabIndex = 0;
             this.btn_Overview.Text = "Overview";
             this.btn_Overview.UseVisualStyleBackColor = true;
@@ -513,9 +551,9 @@
             this.cbo_Page_Number.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbo_Page_Number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_Page_Number.FormattingEnabled = true;
-            this.cbo_Page_Number.Location = new System.Drawing.Point(119, 3);
+            this.cbo_Page_Number.Location = new System.Drawing.Point(131, 3);
             this.cbo_Page_Number.Name = "cbo_Page_Number";
-            this.cbo_Page_Number.Size = new System.Drawing.Size(110, 28);
+            this.cbo_Page_Number.Size = new System.Drawing.Size(122, 28);
             this.cbo_Page_Number.TabIndex = 0;
             this.cbo_Page_Number.Text = "Page #";
             // 
@@ -524,7 +562,7 @@
             this.btn_Page_Right.BackgroundImage = global::script_application.Properties.Resources.right;
             this.btn_Page_Right.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_Page_Right.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_Page_Right.Location = new System.Drawing.Point(272, 10);
+            this.btn_Page_Right.Location = new System.Drawing.Point(296, 10);
             this.btn_Page_Right.Name = "btn_Page_Right";
             this.btn_Page_Right.Size = new System.Drawing.Size(30, 35);
             this.btn_Page_Right.TabIndex = 1;
@@ -541,14 +579,61 @@
             this.btn_Page_Left.TabIndex = 0;
             this.btn_Page_Left.UseVisualStyleBackColor = true;
             // 
+            // dgv_Script
+            // 
+            this.dgv_Script.AllowUserToAddRows = false;
+            this.dgv_Script.AllowUserToDeleteRows = false;
+            this.dgv_Script.AllowUserToResizeColumns = false;
+            this.dgv_Script.AllowUserToResizeRows = false;
+            this.dgv_Script.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv_Script.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Script.ColumnHeadersVisible = false;
+            this.dgv_Script.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.lines,
+            this.Column2});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Script.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_Script.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Script.Location = new System.Drawing.Point(10, 10);
+            this.dgv_Script.Name = "dgv_Script";
+            this.dgv_Script.RowHeadersVisible = false;
+            this.dgv_Script.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Script.Size = new System.Drawing.Size(503, 314);
+            this.dgv_Script.TabIndex = 0;
+            this.dgv_Script.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Script_CellClick);
+            this.dgv_Script.SelectionChanged += new System.EventHandler(this.dgv_Script_SelectionChanged);
+            // 
+            // lines
+            // 
+            this.lines.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lines.HeaderText = "Lines";
+            this.lines.Name = "lines";
+            this.lines.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 1F;
+            this.Column2.HeaderText = "Data";
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
             // PageForm
             // 
             this.Controls.Add(this.tlp_base);
             this.MinimumSize = new System.Drawing.Size(835, 400);
             this.Name = "PageForm";
-            this.Size = new System.Drawing.Size(884, 561);
+            this.Size = new System.Drawing.Size(944, 584);
+            this.Load += new System.EventHandler(this.PageForm_Load);
             this.tlp_base.ResumeLayout(false);
             this.pnl_Left.ResumeLayout(false);
+            this.pnl_Script.ResumeLayout(false);
+            this.pnl_Preview.ResumeLayout(false);
             this.pnl_Line.ResumeLayout(false);
             this.pnl_Line.PerformLayout();
             this.pnl_Line_Info.ResumeLayout(false);
@@ -566,6 +651,7 @@
             this.pnl_Page_Control.ResumeLayout(false);
             this.tbl_Page_Number.ResumeLayout(false);
             this.pnl_Overview.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -575,7 +661,6 @@
         private System.Windows.Forms.TableLayoutPanel tlp_base;
         private System.Windows.Forms.Panel pnl_Left;
         private System.Windows.Forms.Panel pnl_Right;
-        private System.Windows.Forms.ListView lsv_Script;
         private System.Windows.Forms.Panel pnl_Script_Control;
         private System.Windows.Forms.Button btn_Move_Up;
         private System.Windows.Forms.Button btn_Move_Down;
@@ -610,6 +695,12 @@
         private System.Windows.Forms.TextBox txt_Caption;
         private System.Windows.Forms.Panel pnl_Overview;
         private System.Windows.Forms.Button btn_Overview;
+        private System.Windows.Forms.Panel pnl_Preview;
+        private System.Windows.Forms.Label lbl_Preview;
+        private System.Windows.Forms.Panel pnl_Script;
+        private System.Windows.Forms.DataGridView dgv_Script;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lines;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 

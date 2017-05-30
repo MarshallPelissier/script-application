@@ -65,7 +65,9 @@ namespace script_application
                 file = JsonConvert.DeserializeObject<File>(De_Serial, _jsonSettings);
                 SaveFile = ofd.FileName;
 
+                change = false;
                 ctf_Contents_Main.Create_Cards();
+                From_Page();
             }
         }
 
@@ -86,6 +88,7 @@ namespace script_application
                 System.IO.StreamWriter output = new System.IO.StreamWriter(SaveFile);
                 output.Write(Serial);
                 output.Close();
+                change = false;
             }
             else
             {
@@ -105,6 +108,7 @@ namespace script_application
                 output.Write(Serial);
                 output.Close();
                 SaveFile = sfd.FileName;
+                change = false;
             }
         }
 
@@ -118,8 +122,7 @@ namespace script_application
 
         private void Closing_Dialog(FormClosingEventArgs e)
         {
-            DialogResult dlg = MessageBox.Show("Save changes?", "To Do", MessageBoxButtons.YesNoCancel);
-
+            DialogResult dlg = MessageBox.Show("Save changes?", "Script App", MessageBoxButtons.YesNoCancel);            
             if (dlg == DialogResult.Yes)
             {
                 Save_File();
@@ -138,7 +141,30 @@ namespace script_application
             {
                 e.Cancel = true;
             }
-        } 
+        }
+
+        private bool Save_Dialog()
+        {
+            DialogResult dlg = MessageBox.Show("Save changes?", "Script App", MessageBoxButtons.YesNoCancel);
+            if (dlg == DialogResult.Yes)
+            {
+                Save_File();
+                return true;
+            }
+            if (dlg == DialogResult.No)
+            {
+               return true;
+            }
+
+            if (dlg == DialogResult.Cancel)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void tsm_New_Click(object sender, EventArgs e)
         {
@@ -147,7 +173,17 @@ namespace script_application
 
         private void tsm_Open_Click(object sender, EventArgs e)
         {
-            Open_File();
+            if (change == true)
+            {
+                if (Save_Dialog())
+                {
+                    Open_File();
+                }
+            }
+            else
+            {
+                Open_File();
+            }
         }
 
         private void tsm_Save_Click(object sender, EventArgs e)
@@ -165,10 +201,11 @@ namespace script_application
             this.Close();
         }
 
-        public void To_Page(Page page = null)
+        public void To_Page(Page page)
         {
             pgf_Page.Visible = true;
             ctf_Contents_Main.Visible = false;
+            pgf_Page.Load_Page(page);
 
         }
 
@@ -180,28 +217,11 @@ namespace script_application
         //Page Menu
         //  New Page
 
-        public void New_Page()
-        {
-            //save any changed data (title, summary, card order)
-            ctf_Contents_Main.New_Card();
-            To_Page();
-        }
-
         public void Edit_Page(Page page)
         {
             //save any changed data (title, summary, card order)
             To_Page(page);
-        }        
-
-        private void tsm_New_Page_Click(object sender, EventArgs e)
-        {
-            New_Page();
-        }
-
-        private void tsm_Overview_Click(object sender, EventArgs e)
-        {
-            From_Page();
-        }
+        }               
 
         private void tsm_Line_Click(object sender, EventArgs e)
         {

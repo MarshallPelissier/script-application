@@ -208,6 +208,7 @@
             this.Controls.Add(this.tlp_Contents);
             this.Name = "ContentsForm";
             this.Size = new System.Drawing.Size(884, 561);
+            this.Load += new System.EventHandler(this.ContentsForm_Load);
             this.tlp_Contents.ResumeLayout(false);
             this.tlp_File_Info.ResumeLayout(false);
             this.pnl_Summary.ResumeLayout(false);

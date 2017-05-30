@@ -36,9 +36,6 @@
             this.tsm_Save_As = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsm_Exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_Page = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_New_Page = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_Overview = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_Line = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ctf_Contents_Main = new script_application.ContentsForm();
@@ -51,7 +48,6 @@
             this.mnu_Main.BackColor = System.Drawing.SystemColors.Control;
             this.mnu_Main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsm_File,
-            this.tsm_Page,
             this.tsm_Line});
             this.mnu_Main.Location = new System.Drawing.Point(0, 0);
             this.mnu_Main.Name = "mnu_Main";
@@ -112,29 +108,6 @@
             this.tsm_Exit.Text = "Exit";
             this.tsm_Exit.Click += new System.EventHandler(this.tsm_Exit_Click);
             // 
-            // tsm_Page
-            // 
-            this.tsm_Page.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsm_New_Page,
-            this.tsm_Overview});
-            this.tsm_Page.Name = "tsm_Page";
-            this.tsm_Page.Size = new System.Drawing.Size(45, 20);
-            this.tsm_Page.Text = "Page";
-            // 
-            // tsm_New_Page
-            // 
-            this.tsm_New_Page.Name = "tsm_New_Page";
-            this.tsm_New_Page.Size = new System.Drawing.Size(127, 22);
-            this.tsm_New_Page.Text = "New Page";
-            this.tsm_New_Page.Click += new System.EventHandler(this.tsm_New_Page_Click);
-            // 
-            // tsm_Overview
-            // 
-            this.tsm_Overview.Name = "tsm_Overview";
-            this.tsm_Overview.Size = new System.Drawing.Size(127, 22);
-            this.tsm_Overview.Text = "Overview";
-            this.tsm_Overview.Click += new System.EventHandler(this.tsm_Overview_Click);
-            // 
             // tsm_Line
             // 
             this.tsm_Line.Name = "tsm_Line";
@@ -191,12 +164,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_Save_As;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tsm_Exit;
-        private System.Windows.Forms.ToolStripMenuItem tsm_Page;
-        private System.Windows.Forms.ToolStripMenuItem tsm_New_Page;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private PageForm pgf_Page;
         private ContentsForm ctf_Contents_Main;
-        private System.Windows.Forms.ToolStripMenuItem tsm_Overview;
         private System.Windows.Forms.ToolStripMenuItem tsm_Line;
     }
 }

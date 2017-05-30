@@ -17,9 +17,13 @@ namespace script_application
             InitializeComponent();
         }
 
-        public void New_Card(string summary = "",bool reset = false)
+        private void ContentsForm_Load(object sender, EventArgs e)
         {
             ParentBaseForm = ParentForm as BaseForm;
+        }
+
+        public void New_Card(string summary = "",bool reset = false)
+        {
             int index = Find_Number();            
 
             PageCard card = new PageCard(index+1, this);
@@ -33,6 +37,7 @@ namespace script_application
             Reset_Numbers();
             if (!reset)
             {
+                ParentBaseForm.data_changed();
                 ParentBaseForm.file.Summaries.Clear();
                 foreach (PageCard pcard in flp_Page_Cards.Controls)
                 {
@@ -43,7 +48,7 @@ namespace script_application
         }
 
         public void Move_Card(bool up)
-        {
+        {           
             int index = flp_Page_Cards.Controls.GetChildIndex(SelectedCard);
             index = up ? index - 1 : index + 1;
             if (flp_Page_Cards.Controls.Count == index)
@@ -54,6 +59,7 @@ namespace script_application
             Reset_Numbers();
             if (!_loadingCards)
             {
+                ParentBaseForm.data_changed();
                 ParentBaseForm.file.Summaries.Clear();
                 foreach (PageCard pcard in flp_Page_Cards.Controls)
                 {
@@ -187,5 +193,7 @@ namespace script_application
         private bool _loadingCards;
         public PageCard SelectedCard;
         public BaseForm ParentBaseForm;
+
+        
     }
 }

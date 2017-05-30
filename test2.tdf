@@ -1,0 +1,40 @@
+{
+  "$id": "1",
+  "Project_Name": null,
+  "Pages": [
+    {
+      "$id": "2",
+      "Lines": [
+        {
+          "$id": "3",
+          "line": "adasdfasdf",
+          "type": {
+            "$id": "4",
+            "TypeName": null,
+            "PreLine": null,
+            "PostLine": null,
+            "Character": false,
+            "PostCharacter": null
+          },
+          "character": "Characters"
+        },
+        {
+          "$id": "5",
+          "line": "hjkhjkljklhhjkl",
+          "type": {
+            "$ref": "4"
+          },
+          "character": "Characters"
+        }
+      ],
+      "Images": null,
+      "PageNum": 1,
+      "Description": null
+    }
+  ],
+  "Types": [],
+  "Characters": [],
+  "Summaries": [
+    "asdfasdfa"
+  ]
+}
