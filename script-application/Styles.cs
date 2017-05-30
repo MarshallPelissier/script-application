@@ -85,8 +85,6 @@ namespace script_application
             }
             if (cbo_Type.Text == "" ||
                 txt_Type_Name.Text == "" ||
-                txt_Type_Pre.Text == "" ||
-                txt_Type_Post.Text == "" ||
                 (txt_Type_Post_Char.Text == "" &&
                 chk_Type_Character.Checked) ||
                 sameName)

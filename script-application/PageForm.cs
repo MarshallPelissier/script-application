@@ -193,7 +193,6 @@ namespace script_application
                 Update_List();
                 txt_Line.Text = "";
                 dgv_Script.ClearSelection();
-                pnl_Line.Visible = false;
 
                 int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
                 _baseform.file.Pages.RemoveAt(pindex);
@@ -254,11 +253,13 @@ namespace script_application
             if (dgv_Script.SelectedRows.Count > 0)
             {
                 foreach (DataGridViewRow row in dgv_Script.SelectedRows)
-                {
-                    txt_Line.Text = row.Cells[0].Value.ToString();
+                {                   
                     _line = row.Cells[1].Value as Line;
+                    txt_Line.Text = _line.line;
                 }
                 pnl_Line.Visible = true;
+                cbo_Type.SelectedIndex = cbo_Type.FindStringExact(_line.type.TypeName);
+                cbo_Character.SelectedIndex = cbo_Character.FindStringExact(_line.character);
             }            
         }
     }

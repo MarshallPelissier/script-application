@@ -116,9 +116,6 @@ namespace script_application
 
         private void txt_Card_Desc_TextChanged(object sender, EventArgs e)
         {
-            //Set_Summary(txt_Card_Desc.Text);
-            //Contents.Summary_Changed();
-
             if (!Contents.IsLoading())
             {
                 BaseForm bf = Contents.ParentForm as BaseForm;
@@ -127,7 +124,6 @@ namespace script_application
                 PageData.Description = txt_Card_Desc.Text;
                 bf.file.Pages.Insert(pindex, PageData);
             }
-        }
-        
+        }        
     }
 }
