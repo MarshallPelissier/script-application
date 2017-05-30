@@ -198,6 +198,7 @@ namespace script_application
                 int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
                 _baseform.file.Pages.RemoveAt(pindex);
                 _baseform.file.Pages.Insert(pindex, _page);
+
             }
         }
 

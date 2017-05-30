@@ -22,50 +22,54 @@ namespace script_application
             ParentBaseForm = ParentForm as BaseForm;
         }
 
-        public void New_Card(string summary = "",bool reset = false)
+        public void New_Card(Page page)
         {
             int index = Find_Number();            
-
             PageCard card = new PageCard(index+1, this);
-            ParentBaseForm.file.Pages.Add(card.PageData);
-            card.Contents = this;         
-            card.Set_Page_Num(index+1);
-            card.Set_Summary(summary);
+            if (page == null)
+            {
+                page = new Page(index+1);
+                ParentBaseForm.file.Pages.Add(page);
+            }
+            card.Contents = this;
+            card.Set_Page_Num(index + 1);
+            card.PageData = page;
+            card.Set_Summary(page.Description);
             card.WasClicked += UsersGrid_WasClicked;
             flp_Page_Cards.Controls.Add(card);
             flp_Page_Cards.Controls.SetChildIndex(card,index);
-            Reset_Numbers();
-            if (!reset)
-            {
-                ParentBaseForm.data_changed();
-                ParentBaseForm.file.Summaries.Clear();
-                foreach (PageCard pcard in flp_Page_Cards.Controls)
-                {
-                    ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
-                }
-            }
-            
+            Reset_Numbers();                       
         }
 
         public void Move_Card(bool up)
         {           
-            int index = flp_Page_Cards.Controls.GetChildIndex(SelectedCard);
-            index = up ? index - 1 : index + 1;
-            if (flp_Page_Cards.Controls.Count == index)
-            {
-                index = 0;
-            }
-            flp_Page_Cards.Controls.SetChildIndex(SelectedCard, index);
-            Reset_Numbers();
-            if (!_loadingCards)
-            {
-                ParentBaseForm.data_changed();
-                ParentBaseForm.file.Summaries.Clear();
-                foreach (PageCard pcard in flp_Page_Cards.Controls)
-                {
-                    ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
-                }
-            }
+            //int index = flp_Page_Cards.Controls.GetChildIndex(SelectedCard);
+            //index = up ? index - 1 : index + 1;
+            //if (flp_Page_Cards.Controls.Count == index)
+            //{
+            //    index = 0;
+            //}
+            //flp_Page_Cards.Controls.SetChildIndex(SelectedCard, index);
+            //Reset_Numbers();
+            //if (!_loadingCards)
+            //{
+            //    ParentBaseForm.data_changed();
+            //    ParentBaseForm.file.Summaries.Clear();
+            //    foreach (PageCard pcard in flp_Page_Cards.Controls)
+            //    {
+            //        ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
+            //    }
+            //}
+            int pindex = ParentBaseForm.file.Pages.IndexOf(SelectedCard.PageData);
+            int index = up ? pindex - 1 : pindex + 1;
+            //if (index > pindex)
+            //{
+            //    index--;
+            //}
+            ParentBaseForm.file.Pages.RemoveAt(pindex);
+            ParentBaseForm.file.Pages.Insert(index,SelectedCard.PageData);
+            //Create_Cards();
+
         }
 
         private int Find_Number()
@@ -76,7 +80,8 @@ namespace script_application
             }
             else
             {
-                return ParentBaseForm.file.Pages.Count;
+                //return ParentBaseForm.file.Pages.Count;
+                return 0;
             }
         }
 
@@ -86,7 +91,7 @@ namespace script_application
             {
                 pcard.Set_Page_Num(flp_Page_Cards.Controls.GetChildIndex(pcard) + 1);
             }
-            Repopulate_List();
+            //Repopulate_List();
             Card_Count();
         }
 
@@ -105,11 +110,21 @@ namespace script_application
             _loadingCards = true;
             flp_Page_Cards.Controls.Clear();
             SelectedCard = null;
-            foreach (string summary in ParentBaseForm.file.Summaries)
+            //foreach (Page page in ParentBaseForm.file.Pages)
+            //{
+            //    New_Card(page);
+            //}
+            for (int i = ParentBaseForm.file.Pages.Count - 1; i >= 0; i--)
             {
-                New_Card(summary,_loadingCards);
+                Page page = ParentBaseForm.file.Pages[i];
+                New_Card(page);
             }
             _loadingCards = false;
+        }
+
+        public void Update_Cards()
+        {
+
         }
 
         public void Card_Count()
@@ -134,7 +149,7 @@ namespace script_application
 
         private void btn_New_Card_Click(object sender, EventArgs e)
         {
-            New_Card();
+            New_Card(null);
         }
 
         public void Add_Selected_Card(PageCard card)
@@ -182,15 +197,20 @@ namespace script_application
         {
             if (!_loadingCards)
             {
-                ParentBaseForm.file.Summaries.Clear();
-                foreach (PageCard pcard in flp_Page_Cards.Controls)
-                {
-                    ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
-                }
+                //ParentBaseForm.file.Summaries.Clear();
+                //foreach (PageCard pcard in flp_Page_Cards.Controls)
+                //{
+                //    ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
+                //}
+
             }
         }
 
         private bool _loadingCards;
+        public bool IsLoading()
+        {
+            return _loadingCards;
+        }
         public PageCard SelectedCard;
         public BaseForm ParentBaseForm;
 

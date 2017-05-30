@@ -32,6 +32,9 @@
             this.tlp_base = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_Left = new System.Windows.Forms.Panel();
             this.pnl_Script = new System.Windows.Forms.Panel();
+            this.dgv_Script = new System.Windows.Forms.DataGridView();
+            this.lines = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Preview = new System.Windows.Forms.Panel();
             this.lbl_Preview = new System.Windows.Forms.Label();
             this.pnl_Line = new System.Windows.Forms.Panel();
@@ -69,12 +72,10 @@
             this.cbo_Page_Number = new System.Windows.Forms.ComboBox();
             this.btn_Page_Right = new System.Windows.Forms.Button();
             this.btn_Page_Left = new System.Windows.Forms.Button();
-            this.dgv_Script = new System.Windows.Forms.DataGridView();
-            this.lines = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlp_base.SuspendLayout();
             this.pnl_Left.SuspendLayout();
             this.pnl_Script.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).BeginInit();
             this.pnl_Preview.SuspendLayout();
             this.pnl_Line.SuspendLayout();
             this.pnl_Line_Info.SuspendLayout();
@@ -90,7 +91,6 @@
             this.pnl_Page_Control.SuspendLayout();
             this.tbl_Page_Number.SuspendLayout();
             this.pnl_Overview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).BeginInit();
             this.SuspendLayout();
             // 
             // tlp_base
@@ -138,6 +138,50 @@
             this.pnl_Script.Padding = new System.Windows.Forms.Padding(10);
             this.pnl_Script.Size = new System.Drawing.Size(523, 334);
             this.pnl_Script.TabIndex = 4;
+            // 
+            // dgv_Script
+            // 
+            this.dgv_Script.AllowUserToAddRows = false;
+            this.dgv_Script.AllowUserToDeleteRows = false;
+            this.dgv_Script.AllowUserToResizeColumns = false;
+            this.dgv_Script.AllowUserToResizeRows = false;
+            this.dgv_Script.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv_Script.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Script.ColumnHeadersVisible = false;
+            this.dgv_Script.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.lines,
+            this.Column2});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Script.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_Script.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Script.Location = new System.Drawing.Point(10, 10);
+            this.dgv_Script.Name = "dgv_Script";
+            this.dgv_Script.RowHeadersVisible = false;
+            this.dgv_Script.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Script.Size = new System.Drawing.Size(503, 314);
+            this.dgv_Script.TabIndex = 0;
+            this.dgv_Script.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Script_CellClick);
+            this.dgv_Script.SelectionChanged += new System.EventHandler(this.dgv_Script_SelectionChanged);
+            // 
+            // lines
+            // 
+            this.lines.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lines.HeaderText = "Lines";
+            this.lines.Name = "lines";
+            this.lines.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 1F;
+            this.Column2.HeaderText = "Data";
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
             // 
             // pnl_Preview
             // 
@@ -579,50 +623,6 @@
             this.btn_Page_Left.TabIndex = 0;
             this.btn_Page_Left.UseVisualStyleBackColor = true;
             // 
-            // dgv_Script
-            // 
-            this.dgv_Script.AllowUserToAddRows = false;
-            this.dgv_Script.AllowUserToDeleteRows = false;
-            this.dgv_Script.AllowUserToResizeColumns = false;
-            this.dgv_Script.AllowUserToResizeRows = false;
-            this.dgv_Script.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgv_Script.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Script.ColumnHeadersVisible = false;
-            this.dgv_Script.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.lines,
-            this.Column2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Script.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_Script.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Script.Location = new System.Drawing.Point(10, 10);
-            this.dgv_Script.Name = "dgv_Script";
-            this.dgv_Script.RowHeadersVisible = false;
-            this.dgv_Script.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Script.Size = new System.Drawing.Size(503, 314);
-            this.dgv_Script.TabIndex = 0;
-            this.dgv_Script.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Script_CellClick);
-            this.dgv_Script.SelectionChanged += new System.EventHandler(this.dgv_Script_SelectionChanged);
-            // 
-            // lines
-            // 
-            this.lines.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.lines.HeaderText = "Lines";
-            this.lines.Name = "lines";
-            this.lines.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 1F;
-            this.Column2.HeaderText = "Data";
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            // 
             // PageForm
             // 
             this.Controls.Add(this.tlp_base);
@@ -633,6 +633,7 @@
             this.tlp_base.ResumeLayout(false);
             this.pnl_Left.ResumeLayout(false);
             this.pnl_Script.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).EndInit();
             this.pnl_Preview.ResumeLayout(false);
             this.pnl_Line.ResumeLayout(false);
             this.pnl_Line.PerformLayout();
@@ -651,7 +652,6 @@
             this.pnl_Page_Control.ResumeLayout(false);
             this.tbl_Page_Number.ResumeLayout(false);
             this.pnl_Overview.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Script)).EndInit();
             this.ResumeLayout(false);
 
         }

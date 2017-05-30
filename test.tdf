@@ -4,36 +4,58 @@
   "Pages": [
     {
       "$id": "2",
-      "Lines": [],
+      "Lines": [
+        {
+          "$id": "3",
+          "line": "asdfasdfasdfasdf",
+          "type": {
+            "$id": "4",
+            "TypeName": null,
+            "PreLine": null,
+            "PostLine": null,
+            "Character": false,
+            "PostCharacter": null
+          },
+          "character": "Characters"
+        },
+        {
+          "$id": "5",
+          "line": "wertwerwertwertwet",
+          "type": {
+            "$ref": "4"
+          },
+          "character": "Characters"
+        }
+      ],
       "Images": null,
       "PageNum": 1,
-      "Description": null
+      "Description": "11111"
     },
     {
-      "$id": "3",
-      "Lines": [],
-      "Images": null,
-      "PageNum": 2,
-      "Description": null
-    },
-    {
-      "$id": "4",
+      "$id": "6",
       "Lines": [],
       "Images": null,
       "PageNum": 3,
-      "Description": null
+      "Description": "22222"
     },
     {
-      "$id": "5",
+      "$id": "7",
+      "Lines": [],
+      "Images": null,
+      "PageNum": 2,
+      "Description": "33333"
+    },
+    {
+      "$id": "8",
       "Lines": [],
       "Images": null,
       "PageNum": 4,
-      "Description": null
+      "Description": "44444"
     }
   ],
   "Types": [
     {
-      "$id": "6",
+      "$id": "9",
       "TypeName": "Character",
       "PreLine": " ",
       "PostLine": " ",
@@ -41,7 +63,7 @@
       "PostCharacter": " : "
     },
     {
-      "$id": "7",
+      "$id": "10",
       "TypeName": "Default",
       "PreLine": " ",
       "PostLine": " ",
@@ -56,9 +78,9 @@
     "Eon"
   ],
   "Summaries": [
-    "a",
-    "ab",
-    "abc",
-    "abcd"
+    "11111",
+    "33333",
+    "22222",
+    "44444"
   ]
 }
