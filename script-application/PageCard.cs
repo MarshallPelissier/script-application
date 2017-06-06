@@ -123,6 +123,8 @@ namespace script_application
                 bf.file.Pages.RemoveAt(pindex);
                 PageData.Description = txt_Card_Desc.Text;
                 bf.file.Pages.Insert(pindex, PageData);
+
+                Contents.ParentBaseForm.data_changed();
             }
         }        
     }

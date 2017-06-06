@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlp_base = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_Left = new System.Windows.Forms.Panel();
             this.pnl_Script = new System.Windows.Forms.Panel();
@@ -151,14 +151,14 @@
             this.dgv_Script.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.lines,
             this.Column2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Script.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Script.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_Script.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Script.Location = new System.Drawing.Point(10, 10);
             this.dgv_Script.Name = "dgv_Script";
@@ -166,7 +166,6 @@
             this.dgv_Script.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Script.Size = new System.Drawing.Size(503, 314);
             this.dgv_Script.TabIndex = 0;
-            this.dgv_Script.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Script_CellClick);
             this.dgv_Script.SelectionChanged += new System.EventHandler(this.dgv_Script_SelectionChanged);
             // 
             // lines
@@ -217,6 +216,7 @@
             this.pnl_Line.Padding = new System.Windows.Forms.Padding(10);
             this.pnl_Line.Size = new System.Drawing.Size(523, 100);
             this.pnl_Line.TabIndex = 3;
+            this.pnl_Line.Visible = false;
             // 
             // txt_Line
             // 
@@ -284,7 +284,7 @@
             this.btn_Save_Line.TabIndex = 3;
             this.btn_Save_Line.Text = "Save";
             this.btn_Save_Line.UseVisualStyleBackColor = true;
-            this.btn_Save_Line.Click += new System.EventHandler(this.btn_Save_Line_Click_1);
+            this.btn_Save_Line.Click += new System.EventHandler(this.btn_Save_Line_Click);
             // 
             // pnl_Script_Control
             // 
@@ -323,6 +323,7 @@
             this.btn_Move_Up.Size = new System.Drawing.Size(41, 35);
             this.btn_Move_Up.TabIndex = 3;
             this.btn_Move_Up.UseVisualStyleBackColor = true;
+            this.btn_Move_Up.Click += new System.EventHandler(this.btn_Move_Up_Click);
             // 
             // btn_Move_Down
             // 
@@ -336,6 +337,7 @@
             this.btn_Move_Down.TabIndex = 2;
             this.btn_Move_Down.Text = "V";
             this.btn_Move_Down.UseVisualStyleBackColor = true;
+            this.btn_Move_Down.Click += new System.EventHandler(this.btn_Move_Down_Click);
             // 
             // btn_Remove_Line
             // 
@@ -444,6 +446,7 @@
             this.btn_Image_Right.Size = new System.Drawing.Size(24, 34);
             this.btn_Image_Right.TabIndex = 2;
             this.btn_Image_Right.UseVisualStyleBackColor = true;
+            this.btn_Image_Right.Click += new System.EventHandler(this.btn_Image_Right_Click);
             // 
             // pnl_Image_Control
             // 
@@ -466,6 +469,7 @@
             this.txt_Caption.TabIndex = 2;
             this.txt_Caption.Text = "Caption";
             this.txt_Caption.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_Caption.Visible = false;
             // 
             // btn_Remove_Image
             // 
@@ -476,6 +480,7 @@
             this.btn_Remove_Image.TabIndex = 1;
             this.btn_Remove_Image.Text = "Remove Image";
             this.btn_Remove_Image.UseVisualStyleBackColor = true;
+            this.btn_Remove_Image.Click += new System.EventHandler(this.btn_Remove_Image_Click);
             // 
             // btn_Add_Image
             // 
@@ -486,6 +491,7 @@
             this.btn_Add_Image.TabIndex = 0;
             this.btn_Add_Image.Text = "Add Image";
             this.btn_Add_Image.UseVisualStyleBackColor = true;
+            this.btn_Add_Image.Click += new System.EventHandler(this.btn_Add_Image_Click);
             // 
             // btn_Image_Left
             // 
@@ -497,6 +503,7 @@
             this.btn_Image_Left.Size = new System.Drawing.Size(24, 34);
             this.btn_Image_Left.TabIndex = 1;
             this.btn_Image_Left.UseVisualStyleBackColor = true;
+            this.btn_Image_Left.Click += new System.EventHandler(this.btn_Image_Left_Click);
             // 
             // pic_Image
             // 
@@ -504,6 +511,7 @@
             this.pic_Image.Location = new System.Drawing.Point(3, 3);
             this.pic_Image.Name = "pic_Image";
             this.pic_Image.Size = new System.Drawing.Size(324, 237);
+            this.pic_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_Image.TabIndex = 3;
             this.pic_Image.TabStop = false;
             // 
@@ -528,6 +536,7 @@
             this.txt_Description.Name = "txt_Description";
             this.txt_Description.Size = new System.Drawing.Size(326, 145);
             this.txt_Description.TabIndex = 1;
+            this.txt_Description.TextChanged += new System.EventHandler(this.txt_Description_TextChanged);
             // 
             // lbl_Description
             // 
@@ -600,6 +609,7 @@
             this.cbo_Page_Number.Size = new System.Drawing.Size(122, 28);
             this.cbo_Page_Number.TabIndex = 0;
             this.cbo_Page_Number.Text = "Page #";
+            this.cbo_Page_Number.SelectedIndexChanged += new System.EventHandler(this.cbo_Page_Number_SelectedIndexChanged);
             // 
             // btn_Page_Right
             // 
@@ -611,6 +621,7 @@
             this.btn_Page_Right.Size = new System.Drawing.Size(30, 35);
             this.btn_Page_Right.TabIndex = 1;
             this.btn_Page_Right.UseVisualStyleBackColor = true;
+            this.btn_Page_Right.Click += new System.EventHandler(this.btn_Page_Right_Click);
             // 
             // btn_Page_Left
             // 
@@ -622,6 +633,7 @@
             this.btn_Page_Left.Size = new System.Drawing.Size(30, 35);
             this.btn_Page_Left.TabIndex = 0;
             this.btn_Page_Left.UseVisualStyleBackColor = true;
+            this.btn_Page_Left.Click += new System.EventHandler(this.btn_Page_Left_Click);
             // 
             // PageForm
             // 

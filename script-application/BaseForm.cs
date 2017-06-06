@@ -44,8 +44,8 @@ namespace script_application
         }
 
         protected virtual void Open_File()
-        {
-            ofd.Filter = "TDF|*.tdf";
+        {            
+            ofd.Filter = "COMIC|*.comic";
             ofd.Title = "Select File to Open";
             string De_Serial;
 
@@ -98,7 +98,7 @@ namespace script_application
 
         protected virtual void Save_As_File()
         {
-            sfd.Filter = "TDF|*.tdf";
+            sfd.Filter = "COMIC|*.comic";
             sfd.Title = "Select Location to Save";
             string Serial;
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -142,6 +142,21 @@ namespace script_application
                 e.Cancel = true;
             }
         }
+
+        public void To_Page(Page page)
+        {
+            pgf_Page.Visible = true;
+            ctf_Contents_Main.Visible = false;
+            pgf_Page.Load_Page(page);
+
+        }
+
+        public void From_Page()
+        {
+            pgf_Page.Visible = false;
+            ctf_Contents_Main.Visible = true;
+            ctf_Contents_Main.Create_Cards();
+        }        
 
         private bool Save_Dialog()
         {
@@ -200,22 +215,6 @@ namespace script_application
         {
             this.Close();
         }
-
-        public void To_Page(Page page)
-        {
-            pgf_Page.Visible = true;
-            ctf_Contents_Main.Visible = false;
-            pgf_Page.Load_Page(page);
-
-        }
-
-        public void From_Page()
-        {
-            pgf_Page.Visible = false;
-            ctf_Contents_Main.Visible = true;
-        }
-        //Page Menu
-        //  New Page
 
         public void Edit_Page(Page page)
         {

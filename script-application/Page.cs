@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace script_application
 {
@@ -44,7 +45,7 @@ namespace script_application
             PageNum = num;
         }
         public List<Line> Lines = new List<Line>();
-        public List<string> Images;
+        public List<string> Images = new List<string>();
         public int PageNum;
         public string Description;
     }

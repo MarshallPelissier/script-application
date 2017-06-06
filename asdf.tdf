@@ -7,7 +7,7 @@
       "Lines": [
         {
           "$id": "3",
-          "line": "adasdfasdf",
+          "line": "1",
           "type": {
             "$id": "4",
             "TypeName": null,
@@ -20,21 +20,29 @@
         },
         {
           "$id": "5",
-          "line": "hjkhjkljklhhjkl",
+          "line": "2",
+          "type": {
+            "$ref": "4"
+          },
+          "character": "Characters"
+        },
+        {
+          "$id": "6",
+          "line": "4",
           "type": {
             "$ref": "4"
           },
           "character": "Characters"
         }
       ],
-      "Images": null,
+      "Images": [],
       "PageNum": 1,
-      "Description": null
+      "Description": "asdf"
     }
   ],
   "Types": [],
   "Characters": [],
   "Summaries": [
-    "asdfasdfa"
+    "asdf"
   ]
 }

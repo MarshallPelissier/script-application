@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.mnu_Main = new System.Windows.Forms.MenuStrip();
             this.tsm_File = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_New = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,6 +143,7 @@
             this.Controls.Add(this.ctf_Contents_Main);
             this.Controls.Add(this.pgf_Page);
             this.Controls.Add(this.mnu_Main);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnu_Main;
             this.MinimumSize = new System.Drawing.Size(865, 463);
             this.Name = "BaseForm";

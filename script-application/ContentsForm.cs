@@ -29,7 +29,7 @@ namespace script_application
             if (page == null)
             {
                 page = new Page(index+1);
-                ParentBaseForm.file.Pages.Add(page);
+                ParentBaseForm.file.Pages.Insert(index,page);
             }
             card.Contents = this;
             card.Set_Page_Num(index + 1);
@@ -44,7 +44,25 @@ namespace script_application
         public void Move_Card(bool up)
         {                       
             int pindex = ParentBaseForm.file.Pages.IndexOf(SelectedCard.PageData);
-            int index = up ? pindex - 1 : pindex + 1;
+            int index = pindex;
+            int max = ParentBaseForm.file.Pages.Count - 1;
+
+            if (!up)
+            {
+                index++;
+                if (index > max)
+                {
+                    index = 0;
+                }
+            }
+            else
+            {
+                index--;
+                if (index < 0)
+                {
+                    index = max;
+                }
+            }
             
             ParentBaseForm.file.Pages.RemoveAt(pindex);
             ParentBaseForm.file.Pages.Insert(index,SelectedCard.PageData);
@@ -119,6 +137,7 @@ namespace script_application
         {
             SelectedCard = card;
             btn_Edit_Card.Enabled = true;
+            btn_Duplicate_Card.Enabled = true;
             btn_Delete_Card.Enabled = true;
             Card_Count();
         }
@@ -129,8 +148,10 @@ namespace script_application
             {
                 SelectedCard = null;
                 btn_Edit_Card.Enabled = false;
+                btn_Duplicate_Card.Enabled = false;
                 btn_Delete_Card.Enabled = false;
                 Card_Count();
+                ParentBaseForm.data_changed();
             }
         }
 
@@ -144,6 +165,19 @@ namespace script_application
             ParentBaseForm.Edit_Page(SelectedCard.PageData);
         }
 
+        private void btn_Duplicate_Card_Click(object sender, EventArgs e)
+        {
+            Page temp = new Page(SelectedCard.PageData.PageNum + 1);
+            temp.Description = SelectedCard.PageData.Description;
+            temp.Images = SelectedCard.PageData.Images;
+            temp.Lines = SelectedCard.PageData.Lines;
+            ParentBaseForm.file.Pages.Insert(temp.PageNum - 1, temp);
+
+            Create_Cards();
+
+            ParentBaseForm.data_changed();
+        } 
+ 
         private void btn_Delete_Card_Click(object sender, EventArgs e)
         {
             //prompt before deleting
@@ -164,6 +198,6 @@ namespace script_application
         public PageCard SelectedCard;
         public BaseForm ParentBaseForm;
 
-        
+             
     }
 }

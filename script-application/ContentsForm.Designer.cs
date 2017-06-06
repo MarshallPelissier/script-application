@@ -41,6 +41,7 @@
             this.btn_New_Card = new System.Windows.Forms.Button();
             this.btn_Edit_Card = new System.Windows.Forms.Button();
             this.btn_Delete_Card = new System.Windows.Forms.Button();
+            this.btn_Duplicate_Card = new System.Windows.Forms.Button();
             this.tlp_Contents.SuspendLayout();
             this.tlp_File_Info.SuspendLayout();
             this.pnl_Summary.SuspendLayout();
@@ -158,6 +159,7 @@
             // 
             this.pnl_Card_Controls.Controls.Add(this.btn_New_Card);
             this.pnl_Card_Controls.Controls.Add(this.btn_Edit_Card);
+            this.pnl_Card_Controls.Controls.Add(this.btn_Duplicate_Card);
             this.pnl_Card_Controls.Controls.Add(this.btn_Delete_Card);
             this.pnl_Card_Controls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Card_Controls.Location = new System.Drawing.Point(3, 504);
@@ -169,7 +171,7 @@
             // btn_New_Card
             // 
             this.btn_New_Card.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_New_Card.Location = new System.Drawing.Point(643, 10);
+            this.btn_New_Card.Location = new System.Drawing.Point(568, 10);
             this.btn_New_Card.Name = "btn_New_Card";
             this.btn_New_Card.Size = new System.Drawing.Size(75, 34);
             this.btn_New_Card.TabIndex = 2;
@@ -181,7 +183,7 @@
             // 
             this.btn_Edit_Card.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_Edit_Card.Enabled = false;
-            this.btn_Edit_Card.Location = new System.Drawing.Point(718, 10);
+            this.btn_Edit_Card.Location = new System.Drawing.Point(643, 10);
             this.btn_Edit_Card.Name = "btn_Edit_Card";
             this.btn_Edit_Card.Size = new System.Drawing.Size(75, 34);
             this.btn_Edit_Card.TabIndex = 1;
@@ -200,6 +202,18 @@
             this.btn_Delete_Card.Text = "Delete";
             this.btn_Delete_Card.UseVisualStyleBackColor = true;
             this.btn_Delete_Card.Click += new System.EventHandler(this.btn_Delete_Card_Click);
+            // 
+            // btn_Duplicate_Card
+            // 
+            this.btn_Duplicate_Card.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Duplicate_Card.Enabled = false;
+            this.btn_Duplicate_Card.Location = new System.Drawing.Point(718, 10);
+            this.btn_Duplicate_Card.Name = "btn_Duplicate_Card";
+            this.btn_Duplicate_Card.Size = new System.Drawing.Size(75, 34);
+            this.btn_Duplicate_Card.TabIndex = 3;
+            this.btn_Duplicate_Card.Text = "Duplicate";
+            this.btn_Duplicate_Card.UseVisualStyleBackColor = true;
+            this.btn_Duplicate_Card.Click += new System.EventHandler(this.btn_Duplicate_Card_Click);
             // 
             // ContentsForm
             // 
@@ -236,5 +250,6 @@
         private System.Windows.Forms.Button btn_Delete_Card;
         private System.Windows.Forms.Panel pnl_Card_Count;
         private System.Windows.Forms.Label lbl_Card_Count;
+        private System.Windows.Forms.Button btn_Duplicate_Card;
     }
 }
