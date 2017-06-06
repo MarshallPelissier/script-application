@@ -12,11 +12,16 @@ namespace script_application
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            string path = null;
+            if (args.Length != 0)
+            {
+                path = args[0];
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BaseForm());
+            Application.Run(new BaseForm(path));
         }
     }
 }

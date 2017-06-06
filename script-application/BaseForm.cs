@@ -18,6 +18,33 @@ namespace script_application
             InitializeComponent();
         }
 
+        public BaseForm(string fileName)
+        {            
+            InitializeComponent();
+            if (fileName != null)
+            {
+                string De_Serial;
+
+                var _jsonSettings = new JsonSerializerSettings()
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                    ObjectCreationHandling = ObjectCreationHandling.Auto
+                };
+
+                System.IO.StreamReader input = new System.IO.StreamReader(fileName);
+                De_Serial = input.ReadToEnd();
+                input.Close();
+                file = JsonConvert.DeserializeObject<File>(De_Serial, _jsonSettings);
+                SaveFile = fileName;
+
+                change = false;
+                ctf_Contents_Main.Create_Cards();
+                From_Page();
+            }
+        }
+
         OpenFileDialog ofd = new OpenFileDialog();
         SaveFileDialog sfd = new SaveFileDialog();
         public File file = new File();

@@ -188,6 +188,14 @@
     <Content Include="icon.ico" />
     <Content Include="icon_256.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".comic">
+      <Visible>False</Visible>
+      <Description>Comic Scripts</Description>
+      <Progid>comicfile</Progid>
+      <DefaultIcon>icon.ico</DefaultIcon>
+    </FileAssociation>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
