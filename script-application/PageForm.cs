@@ -36,7 +36,9 @@ namespace script_application
         {
             _loading = true;
             _baseform = ParentForm as BaseForm;
+            pnl_Preview.Visible = true;
             pnl_Line.Visible = false;
+            pnl_Preview.Visible = false;
             txt_Line.Clear();
             txt_Caption.Clear();
             Populate_Types();
@@ -50,6 +52,7 @@ namespace script_application
             Update_Image(-1, true);
             dgv_Script.ClearSelection();
             pnl_Line.Visible = false;
+            pnl_Preview.Visible = false;
             _line = null;
             txt_Line.Text = "";
             btn_Remove_Line.Enabled = false;
@@ -239,9 +242,12 @@ namespace script_application
                 {
                     _page.Lines.Insert(index, _line);
                 }
+                Line tempL = _line;
                 Update_List();
                 txt_Line.Text = "";
                 dgv_Script.ClearSelection();
+                _line = tempL;
+                Set_Comboboxes();
                 _line = null;
                 btn_Remove_Line.Enabled = false;
 
@@ -305,7 +311,28 @@ namespace script_application
                 return false;
             }
         }
-       
+
+        private void Set_Comboboxes()
+        {
+            if (_line.type != null && _line.type.TypeName != null)
+            {
+                cbo_Type.SelectedIndex = cbo_Type.FindStringExact(_line.type.TypeName);
+            }
+            else
+            {
+                cbo_Type.SelectedIndex = cbo_Type.FindStringExact("Types");
+            }
+
+            if (_line.character != null)
+            {
+                cbo_Character.SelectedIndex = cbo_Character.FindStringExact(_line.character);
+            }
+            else
+            {
+                cbo_Character.SelectedIndex = cbo_Character.FindStringExact("Characters");
+            }
+        }
+
         private void btn_Add_Line_Click(object sender, EventArgs e)
         {
             pnl_Line.Visible = true;
@@ -376,23 +403,24 @@ namespace script_application
                 }
                 pnl_Line.Visible = true;
 
-                if (_line.type != null && _line.type.TypeName != null)
-                {
-                    cbo_Type.SelectedIndex = cbo_Type.FindStringExact(_line.type.TypeName);
-                }
-                else
-                {
-                    cbo_Type.SelectedIndex = cbo_Type.FindStringExact("Types");
-                }
+                Set_Comboboxes();
+                //if (_line.type != null && _line.type.TypeName != null)
+                //{
+                //    cbo_Type.SelectedIndex = cbo_Type.FindStringExact(_line.type.TypeName);
+                //}
+                //else
+                //{
+                //    cbo_Type.SelectedIndex = cbo_Type.FindStringExact("Types");
+                //}
 
-                if (_line.character != null)
-                {
-                    cbo_Character.SelectedIndex = cbo_Character.FindStringExact(_line.character);
-                }
-                else
-                {
-                    cbo_Character.SelectedIndex = cbo_Character.FindStringExact("Characters");
-                }
+                //if (_line.character != null)
+                //{
+                //    cbo_Character.SelectedIndex = cbo_Character.FindStringExact(_line.character);
+                //}
+                //else
+                //{
+                //    cbo_Character.SelectedIndex = cbo_Character.FindStringExact("Characters");
+                //}
                 btn_Remove_Line.Enabled = true;
             }
             else
