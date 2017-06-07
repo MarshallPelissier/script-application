@@ -19,7 +19,11 @@ namespace script_application
 
         private void ContentsForm_Load(object sender, EventArgs e)
         {
-            ParentBaseForm = ParentForm as BaseForm;
+            _loading = true;
+            _baseform = ParentForm as BaseForm;
+            txt_Title.Text = _baseform.file.Project_Name;
+            txt_Summary.Text = _baseform.file.Summary;
+            _loading = false;
         }
 
         public void New_Card(Page page)
@@ -29,7 +33,7 @@ namespace script_application
             if (page == null)
             {
                 page = new Page(index+1);
-                ParentBaseForm.file.Pages.Insert(index,page);
+                _baseform.file.Pages.Insert(index,page);
             }
             card.Contents = this;
             card.Set_Page_Num(index + 1);
@@ -43,9 +47,9 @@ namespace script_application
 
         public void Move_Card(bool up)
         {                       
-            int pindex = ParentBaseForm.file.Pages.IndexOf(SelectedCard.PageData);
+            int pindex = _baseform.file.Pages.IndexOf(SelectedCard.PageData);
             int index = pindex;
-            int max = ParentBaseForm.file.Pages.Count - 1;
+            int max = _baseform.file.Pages.Count - 1;
 
             if (!up)
             {
@@ -64,8 +68,8 @@ namespace script_application
                 }
             }
             
-            ParentBaseForm.file.Pages.RemoveAt(pindex);
-            ParentBaseForm.file.Pages.Insert(index,SelectedCard.PageData);
+            _baseform.file.Pages.RemoveAt(pindex);
+            _baseform.file.Pages.Insert(index,SelectedCard.PageData);
             Create_Cards();
 
         }
@@ -95,14 +99,14 @@ namespace script_application
 
         public void Create_Cards()
         {
-            ParentBaseForm = ParentForm as BaseForm;
+            _baseform = ParentForm as BaseForm;
             _loadingCards = true;
             flp_Page_Cards.Controls.Clear();
             SelectedCard = null;
             
-            for (int i = ParentBaseForm.file.Pages.Count - 1; i >= 0; i--)
+            for (int i = _baseform.file.Pages.Count - 1; i >= 0; i--)
             {
-                Page page = ParentBaseForm.file.Pages[i];
+                Page page = _baseform.file.Pages[i];
                 New_Card(page);
             }
             _loadingCards = false;
@@ -151,18 +155,13 @@ namespace script_application
                 btn_Duplicate_Card.Enabled = false;
                 btn_Delete_Card.Enabled = false;
                 Card_Count();
-                ParentBaseForm.data_changed();
+                _baseform.data_changed();
             }
         }
 
         private void btn_Edit_Card_Click(object sender, EventArgs e)
         {
-            ParentBaseForm.file.Summaries.Clear();
-            foreach (PageCard pcard in flp_Page_Cards.Controls)
-            {
-                ParentBaseForm.file.Summaries.Add(pcard.PageSummary);
-            }
-            ParentBaseForm.Edit_Page(SelectedCard.PageData);
+            _baseform.Edit_Page(SelectedCard.PageData);
         }
 
         private void btn_Duplicate_Card_Click(object sender, EventArgs e)
@@ -171,11 +170,11 @@ namespace script_application
             temp.Description = SelectedCard.PageData.Description;
             temp.Images = SelectedCard.PageData.Images;
             temp.Lines = SelectedCard.PageData.Lines;
-            ParentBaseForm.file.Pages.Insert(temp.PageNum - 1, temp);
+            _baseform.file.Pages.Insert(temp.PageNum - 1, temp);
 
             Create_Cards();
 
-            ParentBaseForm.data_changed();
+            _baseform.data_changed();
         } 
  
         private void btn_Delete_Card_Click(object sender, EventArgs e)
@@ -184,19 +183,38 @@ namespace script_application
             if (flp_Page_Cards.Controls.Contains(SelectedCard))
             {
                 PageCard scard = flp_Page_Cards.Controls[flp_Page_Cards.Controls.GetChildIndex(SelectedCard)] as PageCard;
-                ParentBaseForm.file.Pages.Remove(scard.PageData);
+                _baseform.file.Pages.Remove(scard.PageData);
                 scard.Dispose();
                 Reset_Numbers();
             }
         }
 
-        private bool _loadingCards;
+        private bool _loading = false;
+        private bool _loadingCards;        
         public bool IsLoading()
         {
             return _loadingCards;
         }
         public PageCard SelectedCard;
-        public BaseForm ParentBaseForm;
+        public BaseForm _baseform;
+
+        private void txt_Title_TextChanged(object sender, EventArgs e)
+        {
+            _baseform.file.Project_Name = txt_Title.Text;
+            if (!_loading)
+            {
+                _baseform.data_changed();
+            }
+        }
+
+        private void txt_Summary_TextChanged(object sender, EventArgs e)
+        {
+            _baseform.file.Summary = txt_Summary.Text;
+            if (!_loading)
+            {
+                _baseform.data_changed();
+            }
+        }
 
              
     }

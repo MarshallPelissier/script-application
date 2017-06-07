@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace script_application
 {
@@ -17,6 +18,8 @@ namespace script_application
         private Page _pageTemp;
         private Line _line;
         private int _imageIndex = -1;
+        private string _appPath;
+        private bool _loading = false;
 
         public PageForm()
         {
@@ -31,12 +34,18 @@ namespace script_application
 
         public void Load_Page(Page page)
         {
+            _loading = true;
             _baseform = ParentForm as BaseForm;
             pnl_Line.Visible = false;
             txt_Line.Clear();
             txt_Caption.Clear();
             Populate_Types();
             Populate_Char();
+            _appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\Images\";
+            if (Directory.Exists(_appPath) == false)
+            {
+                Directory.CreateDirectory(_appPath);
+            }
             Update_List(page);
             Update_Image(-1, true);
             dgv_Script.ClearSelection();
@@ -47,6 +56,7 @@ namespace script_application
             cbo_Page_Number.Text = "Page # " + page.PageNum;
             txt_Description.Text = page.Description;
             Populate_Pages();
+            _loading = false;
         }
 
         // combo box logic and events
@@ -67,7 +77,7 @@ namespace script_application
             }
 
             cbo_Page_Number.DataSource = null;
-            cbo_Page_Number.Items.Clear();
+            //cbo_Page_Number.Items.Clear();
             cbo_Page_Number.DisplayMember = "Text";
             cbo_Page_Number.ValueMember = "Value";
             cbo_Page_Number.DataSource = items;
@@ -429,7 +439,7 @@ namespace script_application
         {
             if (index > -1)
             {
-                pic_Image.Image = new Bitmap(_page.Images[index]);
+                pic_Image.Image = new Bitmap(_appPath + _page.Images[index]);
                 _imageIndex = index;
                 btn_Remove_Image.Enabled = true;
             }
@@ -442,8 +452,9 @@ namespace script_application
             {
                 if (_page.Images.Count > 0)
                 {
-                    pic_Image.Image = new Bitmap(_page.Images[0]);
+                    pic_Image.Image = new Bitmap(_appPath + _page.Images[0]);
                     _imageIndex = 0;
+                    btn_Remove_Image.Enabled = true;
                 }
             }
         }
@@ -455,38 +466,70 @@ namespace script_application
                 dlg.Title = "Open Image";
                 dlg.Filter = "Images |* .png; *jpg; *jpeg; *.bmp";
 
+                
+
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
+                    try
+                    {
+                        string iName = dlg.SafeFileName;   
+                        string filepath = dlg.FileName;
+                        string newpath = "_" + _baseform.file.Project_Name + "_" + iName;
+                        File.Copy(filepath, _appPath + newpath);
+
+                        Bitmap temp = new Bitmap(_appPath + newpath);
+                        _page.Images.Add(newpath);
+                        _imageIndex = _page.Images.IndexOf(newpath);
+
+                        int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
+                        _baseform.file.Pages.RemoveAt(pindex);
+                        _baseform.file.Pages.Insert(pindex, _page);
+                        _pageTemp = _page;
+
+                        Update_Image(_imageIndex);
+                        _baseform.data_changed();
+                    }
+                    catch (Exception exp)
+                    {
+                        MessageBox.Show("Unable to open file " + exp.Message);
+                    }
+
                     // PictureBox PictureBox1 = new PictureBox();
                     // PictureBox1.Image = new Bitmap(dlg.FileName);
 
                     // Add the new control to its parent's controls collection
                     //this.Controls.Add(PictureBox1);
 
-                    //Bitmap temp = new Bitmap(dlg.FileName);
-                    _page.Images.Add(dlg.FileName);
-                    _imageIndex = _page.Images.IndexOf(dlg.FileName);
 
-                    int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
-                    _baseform.file.Pages.RemoveAt(pindex);
-                    _baseform.file.Pages.Insert(pindex, _page);
-                    _pageTemp = _page;
-
-                    Update_Image(_imageIndex);
-                    _baseform.data_changed();
                 }
             }
         }
 
         private void btn_Remove_Image_Click(object sender, EventArgs e)
         {
+            List<string> images = new List<string>();
+            int index = _imageIndex;
+            foreach (string img in _page.Images)
+            {
+                images.Add(img);
+            }
             _page.Images.RemoveAt(_imageIndex);
             int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
             _baseform.file.Pages.RemoveAt(pindex);
-            _baseform.file.Pages.Insert(pindex, _page);
-            _pageTemp = _page;
             _imageIndex = -1;
-            Update_Image(-1,true);
+            Update_Image(-1, true);
+            _baseform.file.Pages.Insert(pindex, _page);
+            try
+            {
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers(); 
+                File.Delete(_appPath + images[index]);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Unable to delete file " + exp.Message);
+            }
+            _pageTemp = _page;
             _baseform.data_changed();
         }
 
@@ -545,13 +588,16 @@ namespace script_application
 
         private void txt_Description_TextChanged(object sender, EventArgs e)
         {
+            if (!_loading)
+            {
+                _baseform.data_changed();
+            }
             _page.Description = txt_Description.Text;
 
             int pindex = _baseform.file.Pages.IndexOf(_pageTemp);
             _baseform.file.Pages.RemoveAt(pindex);
             _baseform.file.Pages.Insert(pindex, _page);
             _pageTemp = _page;
-            _baseform.data_changed();
         }                     
     }
 }

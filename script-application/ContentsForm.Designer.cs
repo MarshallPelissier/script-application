@@ -34,14 +34,14 @@
             this.pnl_Summary = new System.Windows.Forms.Panel();
             this.txt_Summary = new System.Windows.Forms.TextBox();
             this.pnl_Title = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_Title = new System.Windows.Forms.TextBox();
             this.pnl_Card_Count = new System.Windows.Forms.Panel();
             this.lbl_Card_Count = new System.Windows.Forms.Label();
             this.pnl_Card_Controls = new System.Windows.Forms.Panel();
             this.btn_New_Card = new System.Windows.Forms.Button();
             this.btn_Edit_Card = new System.Windows.Forms.Button();
-            this.btn_Delete_Card = new System.Windows.Forms.Button();
             this.btn_Duplicate_Card = new System.Windows.Forms.Button();
+            this.btn_Delete_Card = new System.Windows.Forms.Button();
             this.tlp_Contents.SuspendLayout();
             this.tlp_File_Info.SuspendLayout();
             this.pnl_Summary.SuspendLayout();
@@ -113,10 +113,11 @@
             this.txt_Summary.Size = new System.Drawing.Size(439, 68);
             this.txt_Summary.TabIndex = 0;
             this.txt_Summary.Text = "Summary";
+            this.txt_Summary.TextChanged += new System.EventHandler(this.txt_Summary_TextChanged);
             // 
             // pnl_Title
             // 
-            this.pnl_Title.Controls.Add(this.textBox1);
+            this.pnl_Title.Controls.Add(this.txt_Title);
             this.pnl_Title.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Title.Location = new System.Drawing.Point(3, 3);
             this.pnl_Title.Name = "pnl_Title";
@@ -124,16 +125,17 @@
             this.pnl_Title.Size = new System.Drawing.Size(304, 88);
             this.pnl_Title.TabIndex = 2;
             // 
-            // textBox1
+            // txt_Title
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(10, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(284, 47);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Title";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_Title.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Title.Location = new System.Drawing.Point(10, 21);
+            this.txt_Title.Name = "txt_Title";
+            this.txt_Title.Size = new System.Drawing.Size(284, 47);
+            this.txt_Title.TabIndex = 0;
+            this.txt_Title.Text = "Title";
+            this.txt_Title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_Title.TextChanged += new System.EventHandler(this.txt_Title_TextChanged);
             // 
             // pnl_Card_Count
             // 
@@ -191,18 +193,6 @@
             this.btn_Edit_Card.UseVisualStyleBackColor = true;
             this.btn_Edit_Card.Click += new System.EventHandler(this.btn_Edit_Card_Click);
             // 
-            // btn_Delete_Card
-            // 
-            this.btn_Delete_Card.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_Delete_Card.Enabled = false;
-            this.btn_Delete_Card.Location = new System.Drawing.Point(793, 10);
-            this.btn_Delete_Card.Name = "btn_Delete_Card";
-            this.btn_Delete_Card.Size = new System.Drawing.Size(75, 34);
-            this.btn_Delete_Card.TabIndex = 0;
-            this.btn_Delete_Card.Text = "Delete";
-            this.btn_Delete_Card.UseVisualStyleBackColor = true;
-            this.btn_Delete_Card.Click += new System.EventHandler(this.btn_Delete_Card_Click);
-            // 
             // btn_Duplicate_Card
             // 
             this.btn_Duplicate_Card.Dock = System.Windows.Forms.DockStyle.Right;
@@ -214,6 +204,18 @@
             this.btn_Duplicate_Card.Text = "Duplicate";
             this.btn_Duplicate_Card.UseVisualStyleBackColor = true;
             this.btn_Duplicate_Card.Click += new System.EventHandler(this.btn_Duplicate_Card_Click);
+            // 
+            // btn_Delete_Card
+            // 
+            this.btn_Delete_Card.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Delete_Card.Enabled = false;
+            this.btn_Delete_Card.Location = new System.Drawing.Point(793, 10);
+            this.btn_Delete_Card.Name = "btn_Delete_Card";
+            this.btn_Delete_Card.Size = new System.Drawing.Size(75, 34);
+            this.btn_Delete_Card.TabIndex = 0;
+            this.btn_Delete_Card.Text = "Delete";
+            this.btn_Delete_Card.UseVisualStyleBackColor = true;
+            this.btn_Delete_Card.Click += new System.EventHandler(this.btn_Delete_Card_Click);
             // 
             // ContentsForm
             // 
@@ -243,7 +245,7 @@
         private System.Windows.Forms.Panel pnl_Summary;
         private System.Windows.Forms.TextBox txt_Summary;
         private System.Windows.Forms.Panel pnl_Title;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_Title;
         private System.Windows.Forms.Panel pnl_Card_Controls;
         private System.Windows.Forms.Button btn_New_Card;
         private System.Windows.Forms.Button btn_Edit_Card;

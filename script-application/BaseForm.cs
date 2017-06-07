@@ -36,7 +36,7 @@ namespace script_application
                 System.IO.StreamReader input = new System.IO.StreamReader(fileName);
                 De_Serial = input.ReadToEnd();
                 input.Close();
-                file = JsonConvert.DeserializeObject<File>(De_Serial, _jsonSettings);
+                file = JsonConvert.DeserializeObject<Files>(De_Serial, _jsonSettings);
                 SaveFile = fileName;
 
                 change = false;
@@ -47,7 +47,7 @@ namespace script_application
 
         OpenFileDialog ofd = new OpenFileDialog();
         SaveFileDialog sfd = new SaveFileDialog();
-        public File file = new File();
+        public Files file = new Files();
         static public string SaveFile = "";
         static public bool change = false;
 
@@ -89,7 +89,7 @@ namespace script_application
                 System.IO.StreamReader input = new System.IO.StreamReader(ofd.FileName);
                 De_Serial = input.ReadToEnd();
                 input.Close();
-                file = JsonConvert.DeserializeObject<File>(De_Serial, _jsonSettings);
+                file = JsonConvert.DeserializeObject<Files>(De_Serial, _jsonSettings);
                 SaveFile = ofd.FileName;
 
                 change = false;

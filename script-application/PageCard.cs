@@ -124,7 +124,7 @@ namespace script_application
                 PageData.Description = txt_Card_Desc.Text;
                 bf.file.Pages.Insert(pindex, PageData);
 
-                Contents.ParentBaseForm.data_changed();
+                Contents._baseform.data_changed();
             }
         }        
     }
