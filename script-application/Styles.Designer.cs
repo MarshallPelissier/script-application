@@ -47,6 +47,7 @@
             this.tpl_Types = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tlp_Type_Combo = new System.Windows.Forms.TableLayoutPanel();
+            this.cbo_Type = new System.Windows.Forms.ComboBox();
             this.lbl_Type_Combo = new System.Windows.Forms.Label();
             this.pnl_Type_Name = new System.Windows.Forms.Panel();
             this.tlp_Type_Name = new System.Windows.Forms.TableLayoutPanel();
@@ -67,14 +68,13 @@
             this.txt_Type_Post_Char = new System.Windows.Forms.TextBox();
             this.lbl_Type_Post_Char = new System.Windows.Forms.Label();
             this.pnl_Type_Character = new System.Windows.Forms.Panel();
+            this.chk_Type_Character = new System.Windows.Forms.CheckBox();
             this.pnl_Type_Delete = new System.Windows.Forms.Panel();
             this.btn_Type_Delete = new System.Windows.Forms.Button();
             this.pnl_Title = new System.Windows.Forms.Panel();
             this.lbl_Title = new System.Windows.Forms.Label();
             this.pnl_Gap2 = new System.Windows.Forms.Panel();
             this.pnl_Gap1 = new System.Windows.Forms.Panel();
-            this.cbo_Type = new System.Windows.Forms.ComboBox();
-            this.chk_Type_Character = new System.Windows.Forms.CheckBox();
             this.tlp_Styles.SuspendLayout();
             this.pnl_Characters.SuspendLayout();
             this.tpl_Characters.SuspendLayout();
@@ -347,6 +347,21 @@
             this.tlp_Type_Combo.Size = new System.Drawing.Size(188, 56);
             this.tlp_Type_Combo.TabIndex = 2;
             // 
+            // cbo_Type
+            // 
+            this.cbo_Type.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbo_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Type.FormattingEnabled = true;
+            this.cbo_Type.Items.AddRange(new object[] {
+            "hello",
+            "hi",
+            "New"});
+            this.cbo_Type.Location = new System.Drawing.Point(3, 31);
+            this.cbo_Type.Name = "cbo_Type";
+            this.cbo_Type.Size = new System.Drawing.Size(182, 21);
+            this.cbo_Type.TabIndex = 4;
+            this.cbo_Type.SelectedIndexChanged += new System.EventHandler(this.cbo_Type_SelectedIndexChanged);
+            // 
             // lbl_Type_Combo
             // 
             this.lbl_Type_Combo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -426,10 +441,13 @@
             // 
             // txt_Type_Pre
             // 
+            this.txt_Type_Pre.AcceptsReturn = true;
+            this.txt_Type_Pre.AcceptsTab = true;
             this.txt_Type_Pre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_Type_Pre.Location = new System.Drawing.Point(3, 31);
+            this.txt_Type_Pre.Multiline = true;
             this.txt_Type_Pre.Name = "txt_Type_Pre";
-            this.txt_Type_Pre.Size = new System.Drawing.Size(182, 20);
+            this.txt_Type_Pre.Size = new System.Drawing.Size(182, 22);
             this.txt_Type_Pre.TabIndex = 3;
             this.txt_Type_Pre.TextChanged += new System.EventHandler(this.Type_Data_Changed);
             // 
@@ -469,10 +487,13 @@
             // 
             // txt_Type_Post
             // 
+            this.txt_Type_Post.AcceptsReturn = true;
+            this.txt_Type_Post.AcceptsTab = true;
             this.txt_Type_Post.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_Type_Post.Location = new System.Drawing.Point(3, 31);
+            this.txt_Type_Post.Multiline = true;
             this.txt_Type_Post.Name = "txt_Type_Post";
-            this.txt_Type_Post.Size = new System.Drawing.Size(182, 20);
+            this.txt_Type_Post.Size = new System.Drawing.Size(182, 22);
             this.txt_Type_Post.TabIndex = 3;
             this.txt_Type_Post.TextChanged += new System.EventHandler(this.Type_Data_Changed);
             // 
@@ -534,10 +555,13 @@
             // 
             // txt_Type_Post_Char
             // 
+            this.txt_Type_Post_Char.AcceptsReturn = true;
+            this.txt_Type_Post_Char.AcceptsTab = true;
             this.txt_Type_Post_Char.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_Type_Post_Char.Location = new System.Drawing.Point(3, 31);
+            this.txt_Type_Post_Char.Multiline = true;
             this.txt_Type_Post_Char.Name = "txt_Type_Post_Char";
-            this.txt_Type_Post_Char.Size = new System.Drawing.Size(182, 20);
+            this.txt_Type_Post_Char.Size = new System.Drawing.Size(182, 22);
             this.txt_Type_Post_Char.TabIndex = 3;
             this.txt_Type_Post_Char.TextChanged += new System.EventHandler(this.Type_Data_Changed);
             // 
@@ -559,6 +583,19 @@
             this.pnl_Type_Character.Padding = new System.Windows.Forms.Padding(5);
             this.pnl_Type_Character.Size = new System.Drawing.Size(198, 66);
             this.pnl_Type_Character.TabIndex = 6;
+            // 
+            // chk_Type_Character
+            // 
+            this.chk_Type_Character.AutoSize = true;
+            this.chk_Type_Character.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chk_Type_Character.Location = new System.Drawing.Point(5, 5);
+            this.chk_Type_Character.Name = "chk_Type_Character";
+            this.chk_Type_Character.Padding = new System.Windows.Forms.Padding(10);
+            this.chk_Type_Character.Size = new System.Drawing.Size(188, 56);
+            this.chk_Type_Character.TabIndex = 2;
+            this.chk_Type_Character.Text = "Include Character";
+            this.chk_Type_Character.UseVisualStyleBackColor = true;
+            this.chk_Type_Character.CheckedChanged += new System.EventHandler(this.Type_Data_Changed);
             // 
             // pnl_Type_Delete
             // 
@@ -620,34 +657,6 @@
             this.pnl_Gap1.Name = "pnl_Gap1";
             this.pnl_Gap1.Size = new System.Drawing.Size(428, 1);
             this.pnl_Gap1.TabIndex = 4;
-            // 
-            // cbo_Type
-            // 
-            this.cbo_Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbo_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_Type.FormattingEnabled = true;
-            this.cbo_Type.Items.AddRange(new object[] {
-            "hello",
-            "hi",
-            "New"});
-            this.cbo_Type.Location = new System.Drawing.Point(3, 31);
-            this.cbo_Type.Name = "cbo_Type";
-            this.cbo_Type.Size = new System.Drawing.Size(182, 21);
-            this.cbo_Type.TabIndex = 4;
-            this.cbo_Type.SelectedIndexChanged += new System.EventHandler(this.cbo_Type_SelectedIndexChanged);
-            // 
-            // chk_Type_Character
-            // 
-            this.chk_Type_Character.AutoSize = true;
-            this.chk_Type_Character.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chk_Type_Character.Location = new System.Drawing.Point(5, 5);
-            this.chk_Type_Character.Name = "chk_Type_Character";
-            this.chk_Type_Character.Padding = new System.Windows.Forms.Padding(10);
-            this.chk_Type_Character.Size = new System.Drawing.Size(188, 56);
-            this.chk_Type_Character.TabIndex = 2;
-            this.chk_Type_Character.Text = "Include Character";
-            this.chk_Type_Character.UseVisualStyleBackColor = true;
-            this.chk_Type_Character.CheckedChanged += new System.EventHandler(this.Type_Data_Changed);
             // 
             // Styles
             // 
